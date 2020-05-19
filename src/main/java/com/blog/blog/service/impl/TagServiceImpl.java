@@ -1,4 +1,6 @@
 package com.blog.blog.service.impl;
 
-public class TagServiceImpl {
+import com.blog.blog.service.TagService;
+
+public class TagServiceImpl implements TagService {
 }

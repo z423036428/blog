@@ -1,4 +1,6 @@
 package com.blog.blog.service.impl;
 
-public class CategoryServiceImpl {
+import com.blog.blog.service.CategoryService;
+
+public class CategoryServiceImpl implements CategoryService {
 }
