@@ -9,8 +9,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<head>
 		<meta charset="UTF-8">
 		<title></title>
-		<link rel="stylesheet" href="<%=path%>/css/front/common.css" />
-		<link rel="stylesheet" type="text/css" href="<%=path%>/css/front/home.css"/>
+		<link rel="stylesheet" href="<%=path%>/static/css/front/common.css" />
+		<link rel="stylesheet" type="text/css" href="<%=path%>/static/css/front/home.css"/>
 	</head>
 	<body>
 		<div class="head fix">
