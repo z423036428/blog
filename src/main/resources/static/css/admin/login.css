@@ -42,7 +42,7 @@ input.input-error:focus{background-color: transparent;}
 /* 登录 */
 
 .login-bg {
-	background: url(/myblog/img/admin/login-bg.png)0 0 repeat-x;
+	background: url("/img/admin/login-bg.png")0 0 repeat-x;
 	width: 100%;
 	height: 100%;
 }
@@ -164,7 +164,7 @@ input.input-error{
 }
 
 .forget {
-	background-image: url(/myblog/img/admin/forget.png);
+	background-image: url("/img/admin/forget.png");
 	margin: 40px auto;
 }
 

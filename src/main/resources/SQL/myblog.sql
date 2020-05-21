@@ -11,7 +11,7 @@
  Target Server Version : 80018
  File Encoding         : 65001
 
- Date: 19/05/2020 14:44:42
+ Date: 20/05/2020 10:31:55
 */
 
 SET NAMES utf8mb4;
@@ -24,9 +24,7 @@ DROP TABLE IF EXISTS `blog`;
 CREATE TABLE `blog`  (
   `id` bigint(20) NOT NULL,
   `title` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `firstCategory` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `secondCategory` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `thirdCategory` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `category` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `content` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `tag` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `lastUpdateTime` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
@@ -95,7 +93,7 @@ CREATE TABLE `rolerightrelation`  (
   `roleId` bigint(20) NOT NULL,
   `rightId` bigint(20) NOT NULL,
   `lastUpdateTime` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `createTime``` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `createTime` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `editor` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `creator` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `version` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,

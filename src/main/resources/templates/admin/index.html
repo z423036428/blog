@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" class="h-100">
+	<head>
+		<title>控制台</title>
+		<link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">
+		<script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+		<script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.min.js"></script>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	</head>
+
+	<body class="h-100">
+		<!--顶部导航栏部分-->
+		<nav class="navbar navbar-dark bg-dark" style="height: 10%;">
+			<a class="navbar-brand" href="#"><span class="font-italic">福尔摩斯的华生</span></a>
+		</nav>
+		<!--中间主体部分-->
+		<div class="row" style="height: 90%;">
+			<div class="bg-light" style="width: 12%;height: 100%;">
+				<nav class="nav flex-column border border-bottom-0 text-center w-100">
+					<a class="nav-link border-bottom" href="#">首页</a>
+					<a class="nav-link border-bottom" href="#">用户管理</a>
+					<a class="nav-link border-bottom" href="#">文章管理</a>
+					<a class="nav-link border-bottom" href="#">分类管理</a>
+					<a class="nav-link border-bottom" href="#">标签管理</a>
+					<a class="nav-link border-bottom" href="#">信息管理</a>
+					<a class="nav-link border-bottom" href="#">写博客</a>
+				</nav>
+			</div>
+			<div class="bg-white" style="width: 88%;height: 100%;" th:include="admin/user::content"></div>
+		</div>
+	</body>
+
+</html>

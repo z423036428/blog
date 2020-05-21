@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div class="container-fluid" th:fragment="content">
+    <div class="row">
+        <div class="col-md-12">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>
+                        ID
+                    </th>
+                    <th>
+                        分类名称
+                    </th>
+                    <th>
+                        分类等级
+                    </th>
+                    <th>
+                        描述
+                    </th>
+                    <th>
+                        最后修改时间
+                    </th>
+                    <th>
+                        创建时间
+                    </th>
+                    <th>
+                        操作
+                    </th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>
+                        1个
+                    </td>
+                    <td>
+                        TB-每月
+                    </td>
+                    <td>
+                        TB-每月
+                    </td>
+                    <td>
+                        2012年1月4日
+                    </td>
+                    <td>
+                        1个
+                    </td>
+                    <td>
+                        1个
+                    </td>
+                    <td>
+                        <button class="btn btn-primary">修改</button>
+                        <button class="btn btn-danger">删除</button>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+</body>
+</html>

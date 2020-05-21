@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" class="h-100">
+<head>
+    <title>首页</title>
+    <link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+</head>
+<body class="h-100">
+    <div th:fragment="content" class="bg-white" style="width: 88%;height: 100%;">
+        <div class="p-1 text-center" style="width: 48%; float: left;height: 50%">
+            <div class="shadow rounded" style="height: 95%;">
+                <img class="rounded-circle shadow" alt="head" th:src="@{/img/admin/logo.png}" style="width: 200px;height: 200px;"/>
+                <p style="margin-top: 5px">福尔摩斯的华生</p>
+            </div>
+        </div>
+        <div class="p-1" style="width: 48%; height:50%;float: right;margin-right: 30px;">
+            <div class="shadow rounded" style="height: 95%;">
+                <ul>
+                    技能
+                    <li>Java</li>
+                    <li>C</li>
+                    <li>SQL</li>
+                </ul>
+            </div>
+        </div>
+        <div class="p-1" style="width: 97%;height: 50%;margin-top: 280px;margin-right: 30px">
+            <div class="shadow-lg rounded text-center justify-content-center" style="height: 95%;">
+                <img alt="签名图片" src=""/>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
