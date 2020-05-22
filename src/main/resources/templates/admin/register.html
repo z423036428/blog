@@ -5,10 +5,10 @@
 		<script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 		<script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.min.js"></script>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-		<title>博客后台管理-登录</title>
+		<title>博客后台管理-注册</title>
 	</head>
 
-	<body class="bg-dark-grey">
+	<body>
 		<div class="container-fluid">
 			<div class="row">
 				<div class="col-md-3">
@@ -18,12 +18,12 @@
 						<div class="col-md-3">
 						</div>
 						<div class="col-md-6">
-							<img style="margin: auto;clear: both;display: block;width: 80%;height: 100%;" th:src="@{/img/admin/logo.png}" class="rounded-circle" />
+							<img style="margin: auto;clear: both;display: block;width: 80%;height: 100%;" th:src="@{/img/admin/register.jpg}" class="rounded-circle" />
 						</div>
 					</div>
 					<div class="col-md-3">
 					</div>
-					<form class="form-horizontal" style="margin-top: 10px" role="form" action="/admin/userLogin" method="post">
+					<form class="form-horizontal" style="margin-top: 10px" role="form" action="/admin/userRegister" method="post">
 						<div class="form-group row">
 
 							<label for="exampleInputEmail1" class="col-sm-2 control-label">username：</label>
@@ -35,32 +35,16 @@
 
 							<label for="exampleInputPassword1" class="col-sm-2 control-label">password：</label>
 							<div class="col-sm-10">
-								<input type="password" class="form-control" id="exampleInputPassword1" name="password" />
+								<input type="password" class="form-control" id="exampleInputPassword1" name="password1" />
 							</div>
 						</div>
-						<div class="form-group checkbox row">
-							<div class="col-sm-3">
-							</div>
-							<div class="col-sm-6">
-							</div>
-							<div class="col-sm-3">
-								<label>
-									<input type="checkbox" /> remember me
-								</label>
-							</div>
-						</div>
-						<div class="row">
-							<div class="col-sm-1"></div>
+						<div class="form-group row">
+
+							<label for="exampleInputPassword1" class="col-sm-2 control-label">confirm password：</label>
 							<div class="col-sm-10">
-								<button type="submit" class="btn btn-primary btn-block">
-									login
-								</button>
+								<input type="password" class="form-control" id="exampleInputPassword2" name="password2" />
 							</div>
-							<div class="col-sm-1"></div>
 						</div>
-					</form>
-					<p>  </p>
-					<form action="/admin/register" method="get">
 						<div class="row">
 							<div class="col-sm-1"></div>
 							<div class="col-sm-10">

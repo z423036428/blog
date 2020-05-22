@@ -114,7 +114,7 @@
                 <groupId>org.asciidoctor</groupId>
                 <artifactId>asciidoctor-maven-plugin</artifactId>
                 <version>1.5.8</version>
-                <executions>
+                <exemcutions>
                     <execution>
                         <id>generate-docs</id>
                         <phase>prepare-package</phase>
@@ -126,7 +126,7 @@
                             <doctype>book</doctype>
                         </configuration>
                     </execution>
-                </executions>
+                </exemcutions>
                 <dependencies>
                     <dependency>
                         <groupId>org.springframework.restdocs</groupId>
