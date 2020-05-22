@@ -1,4 +1,6 @@
 spring:
+  #resources:
+    #static-locations: classpath:/templates/    将templates下作为静态资源可直接访问页面，但是会导致static内的内容找不到
   datasource:
     name: test
     url: jdbc:mysql://localhost:3306/myblog
