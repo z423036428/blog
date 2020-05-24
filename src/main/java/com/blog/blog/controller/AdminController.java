@@ -16,6 +16,9 @@ public class AdminController {
         return "/admin/login.html";
     }
 
+    @RequestMapping(value = "/login",params = {"error"},method = RequestMethod.GET)
+    public String loginError(){return "/admin/login.html";}
+
     @RequestMapping(value = "/register",method = RequestMethod.GET)
     public String register(){
         return "/admin/register.html";
