@@ -1,6 +1,7 @@
 package com.blog.blog.controller;
 
 import com.blog.blog.module.User;
+import org.springframework.security.config.web.servlet.SecurityMarker;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
