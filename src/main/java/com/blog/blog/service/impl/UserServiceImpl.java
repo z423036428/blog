@@ -1,10 +1,14 @@
 package com.blog.blog.service.impl;
 
+import com.blog.blog.Util.DtoFormatUtil;
+import com.blog.blog.dto.UserDto;
 import com.blog.blog.mapper.RoleMapper;
 import com.blog.blog.mapper.UserMapper;
 import com.blog.blog.mapper.UserRoleRelationMapper;
 import com.blog.blog.module.*;
 import com.blog.blog.service.UserService;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -104,4 +108,21 @@ public class UserServiceImpl implements UserService {
 
         return user;
     }
+
+    @Override
+    public PageInfo<UserDto> findUsersByPage(Integer currentPageNum, Integer pageSize) {
+        PageHelper.startPage(currentPageNum, pageSize);
+        List<User> users = userMapper.selectByExample(new UserExample());
+        List<UserDto> userDtos = new ArrayList<>();
+        Iterator<User> iterator = users.iterator();
+        while(iterator.hasNext()){
+            User user = iterator.next();
+            List<Role> roles = findyRolesByUser(user);
+            userDtos.add(DtoFormatUtil.userDtoFormat(user,roles.get(0).getRoleName()));
+        }
+
+        PageInfo<UserDto> pageInfo = new PageInfo<>(userDtos);
+        return pageInfo;
+    }
+
 }

@@ -37,42 +37,7 @@ public class UserDetailServiceImpl implements UserDetailsService {
             grantedAuthorities.add(new SimpleGrantedAuthority("ROLE_"+iterator.next().getRoleName()));
         }
 
-        UserDetails userDetails = new UserDetails() {
-            @Override
-            public Collection<? extends GrantedAuthority> getAuthorities() {
-                return grantedAuthorities;
-            }
-
-            @Override
-            public String getPassword() {
-                return byUserName.getPassword();
-            }
-
-            @Override
-            public String getUsername() {
-                return byUserName.getUserName();
-            }
-
-            @Override
-            public boolean isAccountNonExpired() {
-                return true;
-            }
-
-            @Override
-            public boolean isAccountNonLocked() {
-                return byUserName.getFlag() != 3;
-            }
-
-            @Override
-            public boolean isCredentialsNonExpired() {
-                return true;
-            }
-
-            @Override
-            public boolean isEnabled() {
-                return byUserName.getFlag() == 0;
-            }
-        };
+        UserInfo userDetails = new UserInfo(grantedAuthorities, byUserName);
 
         return userDetails;
     }

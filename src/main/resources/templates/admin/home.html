@@ -12,16 +12,16 @@
         <div class="p-1 text-center" style="width: 48%; float: left;height: 50%">
             <div class="shadow rounded" style="height: 95%;">
                 <img class="rounded-circle shadow" alt="head" th:src="@{/img/admin/logo.png}" style="width: 200px;height: 200px;"/>
-                <p style="margin-top: 5px">福尔摩斯的华生</p>
+                <p style="margin-top: 5px;font-size: 18px;" th:text="${user.nickName}">username</p>
             </div>
         </div>
         <div class="p-1" style="width: 48%; height:50%;float: right;margin-right: 30px;">
-            <div class="shadow rounded" style="height: 95%;">
+            <div class="shadow rounded text-center" style="height: 95%;">
                 <ul>
-                    技能
-                    <li>Java</li>
-                    <li>C</li>
-                    <li>SQL</li>
+                    <span style="font-size: 30px;">技能</span>
+                    <li style="font-size: 20px;">Java</li>
+                    <li style="font-size: 20px;">C</li>
+                    <li style="font-size: 20px;">SQL</li>
                 </ul>
             </div>
         </div>

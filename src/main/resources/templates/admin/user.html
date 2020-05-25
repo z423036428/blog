@@ -29,13 +29,16 @@
                             角色
                         </th>
                         <th>
-                            密码
-                        </th>
-                        <th>
                             最后修改时间
                         </th>
                         <th>
                             创建时间
+                        </th>
+                        <th>
+                            修改人
+                        </th>
+                        <th>
+                            创建者
                         </th>
                         <th>
                             操作
@@ -43,36 +46,39 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                        <td>
-                            1个
-                        </td>
-                        <td>
-                            TB-每月
-                        </td>
-                        <td>
-                            2012年1月4日
-                        </td>
-                        <td>
-                            默认
-                        </td>
-                        <td>
-                            1个
-                        </td>
-                        <td>
-                            1个
-                        </td>
-                        <td>
-                            1个
-                        </td>
-                        <td>
-                            1个
-                        </td>
-                        <td>
-                            <button class="btn btn-primary">修改</button>
-                            <button class="btn btn-danger">删除</button>
-                        </td>
-                    </tr>
+                        <tr th:each="u : ${users}">
+                            <td th:text="${u.id}">
+                                1个
+                            </td>
+                            <td th:text="${u.userId}">
+                                TB-每月
+                            </td>
+                            <td th:text="${u.userName}">
+                                2012年1月4日
+                            </td>
+                            <td th:text="${u.nickName}">
+                                默认
+                            </td>
+                            <td th:text="${u.roleName}">
+                                1个
+                            </td>
+                            <td th:text="${u.lastUpdateTime}">
+                                1个
+                            </td>
+                            <td th:text="${u.createTime}">
+                                1个
+                            </td>
+                            <td th:text="${u.editor}">
+                                1个
+                            </td>
+                            <td th:text="${u.creator}">
+                                1个
+                            </td>
+                            <td>
+                                <button class="btn btn-primary">修改</button>
+                                <button class="btn btn-danger">删除</button>
+                            </td>
+                        </tr>
                     </tbody>
                 </table>
             </div>

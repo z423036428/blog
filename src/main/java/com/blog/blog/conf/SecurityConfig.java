@@ -1,4 +1,4 @@
-package com.blog.blog;
+package com.blog.blog.conf;
 
 import com.blog.blog.service.impl.UserDetailServiceImpl;
 import org.springframework.context.annotation.Bean;
