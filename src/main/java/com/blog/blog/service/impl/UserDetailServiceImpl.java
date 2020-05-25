@@ -1,119 +1,79 @@
 package com.blog.blog.service.impl;
 
-import com.blog.blog.mapper.RoleMapper;
-import com.blog.blog.mapper.UserMapper;
-import com.blog.blog.mapper.UserRoleRelationMapper;
 import com.blog.blog.module.*;
+import com.blog.blog.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Iterator;
 import java.util.List;
 
-@Service
+
+@Component
 public class UserDetailServiceImpl implements UserDetailsService {
 
     @Autowired
-    UserMapper userMapper;
-    @Autowired
-    UserRoleRelationMapper userRoleRelationMapper;
-    @Autowired
-    RoleMapper roleMapper;
+    private UserService userService;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        UserExample userExample = new UserExample();
-        UserExample.Criteria criteria = userExample.createCriteria();
-        criteria.andUserNameEqualTo(username);
-        List<User> users = userMapper.selectByExample(userExample);
-        UserRoleRelationExample userRoleRelationExample = new UserRoleRelationExample();
-        UserRoleRelationExample.Criteria criteria1 = userRoleRelationExample.createCriteria();
-        criteria1.andUserIdEqualTo(users.get(0).getUserId());
-        List<UserRoleRelation> userRoleRelations = userRoleRelationMapper.selectByExample(userRoleRelationExample);
-        ArrayList<String> roles = new ArrayList<String>();
-        for(UserRoleRelation userRoleRelation : userRoleRelations){
-            RoleExample roleExample = new RoleExample();
-            roleExample.createCriteria().andRoleIdEqualTo(userRoleRelation.getRoleId());
-            String roleName = roleMapper.selectByExample(roleExample).get(0).getRoleName();
-            roles.add(roleName);
+        User byUserName = userService.findByUserName(username);
+
+        if (byUserName == null){
+            throw new UsernameNotFoundException("用户名不存在");
+        }
+
+        ArrayList<GrantedAuthority> grantedAuthorities = new ArrayList<>();
+        List<Role> roles = userService.findyRolesByUser(byUserName);
+        Iterator<Role> iterator = roles.iterator();
+        while (iterator.hasNext()){
+            grantedAuthorities.add(new SimpleGrantedAuthority("ROLE_"+iterator.next().getRoleName()));
         }
 
         UserDetails userDetails = new UserDetails() {
-            /**
-             * 获取权限信息列表
-             * @return
-             */
             @Override
             public Collection<? extends GrantedAuthority> getAuthorities() {
-                ArrayList<SimpleGrantedAuthority> simpleGrantedAuthorities = new ArrayList<SimpleGrantedAuthority>();
-                for(String roleName : roles){
-                    SimpleGrantedAuthority simpleGrantedAuthority = new SimpleGrantedAuthority(roleName);
-                    simpleGrantedAuthorities.add(simpleGrantedAuthority);
-                }
-                return simpleGrantedAuthorities;
+                return grantedAuthorities;
             }
 
-            /**
-             * 获取密码
-             * @return
-             */
             @Override
             public String getPassword() {
-                return users.get(0).getPassword();
+                return byUserName.getPassword();
             }
 
-            /**
-             * 获取用户名
-             * @return
-             */
             @Override
             public String getUsername() {
-                return users.get(0).getUserName();
+                return byUserName.getUserName();
             }
 
-            /**
-             * 验证账号是否过期
-             * @return
-             */
             @Override
             public boolean isAccountNonExpired() {
-                return false;
+                return true;
             }
 
-            /**
-             * 验证账户是否锁定
-             * @return
-             */
             @Override
             public boolean isAccountNonLocked() {
-                return false;
+                return byUserName.getFlag() != 3;
             }
 
-            /**
-             * 验证认证信息是否过期
-             * @return
-             */
             @Override
             public boolean isCredentialsNonExpired() {
-                return false;
+                return true;
             }
 
-            /**
-             * 验证用户是否被禁用
-             * @return
-             */
             @Override
             public boolean isEnabled() {
-                Integer flag = users.get(0).getFlag();
-                return flag != 0;
+                return byUserName.getFlag() == 0;
             }
         };
+
         return userDetails;
     }
 }

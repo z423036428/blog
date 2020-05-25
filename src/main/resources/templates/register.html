@@ -3,6 +3,7 @@
 	<head>
 		<link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">
 		<script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+		<script src="https://cdn.staticfile.org/popper.js/1.15.0/umd/popper.min.js"></script>
 		<script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.min.js"></script>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<title>博客后台管理-注册</title>
@@ -23,26 +24,33 @@
 					</div>
 					<div class="col-md-3">
 					</div>
-					<form class="form-horizontal" style="margin-top: 10px" role="form" action="/admin/userRegister" method="post">
+					<form class="form-horizontal" style="margin-top: 10px" role="form" th:action="@{/register.do}" method="post">
 						<div class="form-group row">
 
-							<label for="exampleInputEmail1" class="col-sm-2 control-label">username：</label>
+							<label for="exampleInputUserName" class="col-sm-2 control-label">username：</label>
 							<div class="col-sm-10">
-								<input type="text" class="form-control" id="exampleInputEmail1" name="username" />
+								<input type="text" class="form-control" id="exampleInputUserName" name="userName" />
 							</div>
 						</div>
 						<div class="form-group row">
 
-							<label for="exampleInputPassword1" class="col-sm-2 control-label">password：</label>
+							<label for="exampleInputPassword" class="col-sm-2 control-label">password：</label>
 							<div class="col-sm-10">
-								<input type="password" class="form-control" id="exampleInputPassword1" name="password1" />
+								<input type="password" class="form-control" id="exampleInputPassword" name="password" />
 							</div>
 						</div>
 						<div class="form-group row">
 
-							<label for="exampleInputPassword1" class="col-sm-2 control-label">confirm password：</label>
+							<label for="exampleInputPassword2" class="col-sm-2 control-label">confirm password：</label>
 							<div class="col-sm-10">
 								<input type="password" class="form-control" id="exampleInputPassword2" name="password2" />
+							</div>
+						</div>
+						<div class="form-group row">
+
+							<label for="exampleInputEmail1" class="col-sm-2 control-label">E-mail：</label>
+							<div class="col-sm-10">
+								<input type="email" class="form-control" id="exampleInputEmail1" name="mail" />
 							</div>
 						</div>
 						<div class="row">

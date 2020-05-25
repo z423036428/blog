@@ -3,11 +3,11 @@ spring:
     #static-locations: classpath:/templates/    将templates下作为静态资源可直接访问页面，但是会导致static内的内容找不到
   datasource:
     name: test
-    url: jdbc:mysql://localhost:3306/myblog
+    url: jdbc:mysql://localhost:3306/myblog?serverTimezone=Asia/Shanghai&characterEncoding=utf8
     username: root
     password: root
     type: com.alibaba.druid.pool.DruidDataSource
-    driver-class-name: com.mysql.jdbc.Driver
+    driver-class-name: com.mysql.cj.jdbc.Driver
     druid:
       filters: stat
       maxActive: 20
@@ -28,5 +28,5 @@ spring:
     mode: LEGACYHTML5
     cache: false
 mybatis:
-  mapperLocations: classpath:mapper/*Mapper.xml
+  mapperLocations: classpath:mappers/*Mapper.xml
   typeAliasesPackage: com.blog.blog.module
