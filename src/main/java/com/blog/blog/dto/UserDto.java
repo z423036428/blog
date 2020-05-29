@@ -11,9 +11,10 @@ public class UserDto {
     private String lastUpdateTime;
     private String creator;
     private String editor;
+    private String roleId;
     private String roleName;
 
-    public UserDto(Long id, String userId, String userName, String nickName, String createTime, String lastUpdateTime, String creator, String editor, String roleName) {
+    public UserDto(Long id, String userId, String userName, String nickName, String createTime, String lastUpdateTime, String creator, String editor, String roleName,String roleId) {
         this.id = id;
         this.userId = userId;
         this.userName = userName;
@@ -23,6 +24,7 @@ public class UserDto {
         this.creator = creator;
         this.editor = editor;
         this.roleName = roleName;
+        this.roleId = roleId;
     }
 
     public Long getId() {
@@ -95,5 +97,13 @@ public class UserDto {
 
     public void setRoleName(String roleName) {
         this.roleName = roleName;
+    }
+
+    public String getRoleId() {
+        return roleId;
+    }
+
+    public void setRoleId(String roleId) {
+        this.roleId = roleId;
     }
 }

@@ -11,7 +11,7 @@
  Target Server Version : 80018
  File Encoding         : 65001
 
- Date: 25/05/2020 10:14:43
+ Date: 29/05/2020 21:59:04
 */
 
 SET NAMES utf8mb4;
@@ -138,6 +138,7 @@ CREATE TABLE `user`  (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `userId` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `userName` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `headImg` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `nickName` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `password` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `mail` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
@@ -148,12 +149,13 @@ CREATE TABLE `user`  (
   `version` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `flag` int(255) NOT NULL DEFAULT 0,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of user
 -- ----------------------------
-INSERT INTO `user` VALUES (2, 'cf36c6f6a34c460b9a84c0c8ecf0ed59', 'Admin', 'cf36c6f6a34c460b9a84c0c8ecf0ed59', '$2a$10$SKM5VtuReJvGVlqTthuLouP0wPBLQPT7krDm1WY9hDfRd4Hx2oHaq', '423036428@qq.com', '1590369509622', '1590369509622', 'Admin', 'Admin', '0', 0);
+INSERT INTO `user` VALUES (2, 'cf36c6f6a34c460b9a84c0c8ecf0ed59', 'Admin', NULL, '福尔摩斯的华生', '$2a$10$SKM5VtuReJvGVlqTthuLouP0wPBLQPT7krDm1WY9hDfRd4Hx2oHaq', '423036428@qq.com', '1590369509622', '1590369509622', 'Admin', 'Admin', '0', 0);
+INSERT INTO `user` VALUES (3, 'e75630e6ecb0436ea00b7690959c1ac1', 'manager', NULL, 'e75630e6ecb0436ea00b7690959c1ac1', '$2a$10$ZPhTLAhGksbzx8COZD7DIecIqwItGRUW1cGXml4g50Ab0WXiT3Uf6', '423036428@qq.com', '1590720550159', '1590720550159', 'Admin', 'Admin', '0', 0);
 
 -- ----------------------------
 -- Table structure for userrolerelation
@@ -167,14 +169,15 @@ CREATE TABLE `userrolerelation`  (
   `createTime` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `editor` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `creator` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `version` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `version` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '0',
   `flag` int(1) NOT NULL DEFAULT 0,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of userrolerelation
 -- ----------------------------
 INSERT INTO `userrolerelation` VALUES (2, 'cf36c6f6a34c460b9a84c0c8ecf0ed59', '0', '1590369509622', '1590369509622', 'Admin', 'Admin', '0', 0);
+INSERT INTO `userrolerelation` VALUES (3, 'e75630e6ecb0436ea00b7690959c1ac1', '1', '1590757884925', '1590720550159', 'Admin', 'Admin', '3', 0);
 
 SET FOREIGN_KEY_CHECKS = 1;

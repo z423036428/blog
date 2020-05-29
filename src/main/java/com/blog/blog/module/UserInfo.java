@@ -4,6 +4,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
+import java.util.List;
 
 public class UserInfo implements UserDetails {
 
@@ -11,12 +12,15 @@ public class UserInfo implements UserDetails {
 
     private User user;
 
+    private List<String> currentUserRole;
+
     public UserInfo() {
     }
 
-    public UserInfo(Collection<? extends GrantedAuthority> grantedAuthorities, User user) {
+    public UserInfo(Collection<? extends GrantedAuthority> grantedAuthorities, User user,List<String> currentUserRole) {
         this.grantedAuthorities = grantedAuthorities;
         this.user = user;
+        this.currentUserRole = currentUserRole;
     }
 
     @Override
@@ -68,5 +72,13 @@ public class UserInfo implements UserDetails {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public List<String> getCurrentUserRole() {
+        return currentUserRole;
+    }
+
+    public void setCurrentUserRole(List<String> currentUserRole) {
+        this.currentUserRole = currentUserRole;
     }
 }

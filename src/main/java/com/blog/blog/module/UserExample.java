@@ -394,6 +394,76 @@ public class UserExample {
             return (Criteria) this;
         }
 
+        public Criteria andHeadImgIsNull() {
+            addCriterion("headImg is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andHeadImgIsNotNull() {
+            addCriterion("headImg is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andHeadImgEqualTo(String value) {
+            addCriterion("headImg =", value, "headImg");
+            return (Criteria) this;
+        }
+
+        public Criteria andHeadImgNotEqualTo(String value) {
+            addCriterion("headImg <>", value, "headImg");
+            return (Criteria) this;
+        }
+
+        public Criteria andHeadImgGreaterThan(String value) {
+            addCriterion("headImg >", value, "headImg");
+            return (Criteria) this;
+        }
+
+        public Criteria andHeadImgGreaterThanOrEqualTo(String value) {
+            addCriterion("headImg >=", value, "headImg");
+            return (Criteria) this;
+        }
+
+        public Criteria andHeadImgLessThan(String value) {
+            addCriterion("headImg <", value, "headImg");
+            return (Criteria) this;
+        }
+
+        public Criteria andHeadImgLessThanOrEqualTo(String value) {
+            addCriterion("headImg <=", value, "headImg");
+            return (Criteria) this;
+        }
+
+        public Criteria andHeadImgLike(String value) {
+            addCriterion("headImg like", value, "headImg");
+            return (Criteria) this;
+        }
+
+        public Criteria andHeadImgNotLike(String value) {
+            addCriterion("headImg not like", value, "headImg");
+            return (Criteria) this;
+        }
+
+        public Criteria andHeadImgIn(List<String> values) {
+            addCriterion("headImg in", values, "headImg");
+            return (Criteria) this;
+        }
+
+        public Criteria andHeadImgNotIn(List<String> values) {
+            addCriterion("headImg not in", values, "headImg");
+            return (Criteria) this;
+        }
+
+        public Criteria andHeadImgBetween(String value1, String value2) {
+            addCriterion("headImg between", value1, value2, "headImg");
+            return (Criteria) this;
+        }
+
+        public Criteria andHeadImgNotBetween(String value1, String value2) {
+            addCriterion("headImg not between", value1, value2, "headImg");
+            return (Criteria) this;
+        }
+
         public Criteria andNickNameIsNull() {
             addCriterion("nickName is null");
             return (Criteria) this;

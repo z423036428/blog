@@ -1,6 +1,8 @@
 package com.blog.blog.service.impl;
 
 import com.blog.blog.Util.DtoFormatUtil;
+import com.blog.blog.common.ResponseCode;
+import com.blog.blog.common.ServerResponse;
 import com.blog.blog.dto.UserDto;
 import com.blog.blog.mapper.RoleMapper;
 import com.blog.blog.mapper.UserMapper;
@@ -10,9 +12,11 @@ import com.blog.blog.service.UserService;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import sun.util.calendar.LocalGregorianCalendar;
 
 import java.util.*;
 
@@ -112,17 +116,57 @@ public class UserServiceImpl implements UserService {
     @Override
     public PageInfo<UserDto> findUsersByPage(Integer currentPageNum, Integer pageSize) {
         PageHelper.startPage(currentPageNum, pageSize);
-        List<User> users = userMapper.selectByExample(new UserExample());
+        UserExample userExample = new UserExample();
+        UserExample.Criteria criteria = userExample.createCriteria();
+        criteria.andFlagEqualTo(0);
+        List<User> users = userMapper.selectByExample(userExample);
         List<UserDto> userDtos = new ArrayList<>();
         Iterator<User> iterator = users.iterator();
         while(iterator.hasNext()){
             User user = iterator.next();
             List<Role> roles = findyRolesByUser(user);
-            userDtos.add(DtoFormatUtil.userDtoFormat(user,roles.get(0).getRoleName()));
+            userDtos.add(DtoFormatUtil.userDtoFormat(user,roles.get(0).getRoleName(),roles.get(0).getRoleId()));
         }
 
         PageInfo<UserDto> pageInfo = new PageInfo<>(userDtos);
         return pageInfo;
+    }
+
+    @Transactional
+    @Override
+    public ServerResponse updateUser(String roleId, String userId) {
+
+        UserInfo userInfo = (UserInfo) (SecurityContextHolder.getContext().getAuthentication().getPrincipal());
+
+        UserRoleRelationExample userRoleRelationExample = new UserRoleRelationExample();
+        UserRoleRelationExample.Criteria criteria = userRoleRelationExample.createCriteria();
+        criteria.andUserIdEqualTo(userId);
+        List<UserRoleRelation> userRoleRelations = userRoleRelationMapper.selectByExample(userRoleRelationExample);
+        if(userRoleRelations == null || userRoleRelations.isEmpty()){
+            return ServerResponse.createByErrorCodeMessage(ResponseCode.ERROR.getCode(), "用户更新错误");
+        }
+        String date = String.valueOf(new Date().getTime());
+        UserRoleRelation userRoleRelation = userRoleRelations.get(0);
+        userRoleRelation.setLastUpdateTime(date);
+        userRoleRelation.setEditor(userInfo.getUsername());
+        userRoleRelation.setVersion(String.valueOf(Integer.valueOf(userRoleRelation.getVersion())+1));
+        userRoleRelation.setRoleId(roleId);
+        userRoleRelationMapper.updateByExample(userRoleRelation,userRoleRelationExample);
+        return ServerResponse.createBySuccess("更新成功");
+    }
+
+    @Transactional
+    @Override
+    public ServerResponse delUserById(String id) {
+        User user = new User();
+        user.setId(Long.valueOf(id));
+        user.setFlag(1);
+        try {
+            userMapper.updateByPrimaryKeySelective(user);
+        }catch (Exception e){
+            return ServerResponse.createByError();
+        }
+        return ServerResponse.createBySuccess();
     }
 
 }

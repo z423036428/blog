@@ -75,14 +75,82 @@
                                 1个
                             </td>
                             <td>
-                                <button class="btn btn-primary">修改</button>
-                                <button class="btn btn-danger">删除</button>
+                                <button class="btn btn-primary" th:onclick="editUser([[${u.userId}]],[[${u.userName}]],[[${u.nickName}]],[[${u.roleId}]],[[${session.USER_INFO.currentUserRole}]])">修改</button>
+                                <button class="btn btn-danger" th:onclick="delUser([[${u.id}]])">删除</button>
                             </td>
                         </tr>
                     </tbody>
                 </table>
             </div>
         </div>
+        <div class="modal fade" id="editUser" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="myModalLabel">用户修改</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <label>User Id:</label><span id="modalUserId"></span><br/>
+                        <label>User Name:</label><span id="modalUserName"></span><br/>
+                        <label>Nick Name:</label><span id="modalNickName"></span><br/>
+                        <select id="currentUserRole">
+                            <option value="0">超级管理员</option>
+                            <option value="1">管理员</option>
+                            <option value="2">用户</option>
+                        </select>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                        <button type="button" class="btn btn-primary" onclick="submitUserEdit()">提交更改</button>
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal -->
+        </div>
+        <script>
+            function editUser(userId,userName,nickName,roleId,currentUserRoldIds) {
+                if(currentUserRoldIds >= roleId || roleId == undefined ) {
+                    alert("您的权限不能够修改该用户的权限");
+                }else{
+                    $('#editUser').modal('show');
+                    $('#modalUserId').text(userId);
+                    $('#modalUserName').text(userName);
+                    $('#modalNickName').text(nickName);
+                    $('#currentUserRole').val(roleId);
+                }
+            }
+            function submitUserEdit() {
+                var userId = $('#modalUserId').text();
+                var roleId = $('#currentUserRole').val();
+                $.ajax({
+                    url:"/admin/user.edit",
+                    type:"PATCH",
+                    data:{"roleId":roleId,"userId":userId},
+                    error:function (data){alert("更新失败")},
+                    success: function (data) {
+                        alert("更新成功");
+                        window.location.reload();
+                    }
+
+                })
+            }
+            function delUser(id) {
+                $.ajax({
+                    url:"/admin/user.delete",
+                    type:"DELETE",
+                    data:{"id":id},
+                    error:function () {
+                        alert("删除失败");
+                    },
+                    success: function (data) {
+                        alert("删除成功");
+                        window.location.reload();
+                    }
+                })
+            }
+        </script>
     </div>
+
+
 </body>
 </html>

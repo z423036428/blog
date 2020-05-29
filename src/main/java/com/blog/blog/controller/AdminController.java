@@ -1,6 +1,7 @@
 package com.blog.blog.controller;
 
 
+import com.blog.blog.common.ServerResponse;
 import com.blog.blog.dto.UserDto;
 import com.blog.blog.module.User;
 import com.blog.blog.module.UserInfo;
@@ -46,6 +47,16 @@ public class AdminController {
         return "/admin/index.html";
     }
 
+    @RequestMapping(value = "/user.edit",method = RequestMethod.PATCH)
+    @ResponseBody
+    public ServerResponse userEdit(String roleId, String userId){
+        return userService.updateUser(roleId, userId);
+    }
 
+    @RequestMapping(value = "/user.delete",method = RequestMethod.DELETE)
+    @ResponseBody
+    public ServerResponse userDel(String id){
+        return userService.delUserById(id);
+    }
 
 }
