@@ -18,7 +18,7 @@ public interface UserService{
 
     public PageInfo<UserDto> findUsersByPage(Integer currentPageNum, Integer pageSize);
 
-    public ServerResponse updateUser(String roleId,String userId);
+    public ServerResponse updateUser(String roleId, String userId);
 
     public ServerResponse delUserById(String id);
 }

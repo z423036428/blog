@@ -43,7 +43,6 @@ public class UserDetailServiceImpl implements UserDetailsService {
         }
 
         UserInfo userDetails = new UserInfo(grantedAuthorities, byUserName,roleIds);
-        session.setAttribute("USER_INFO", userDetails);
 
         return userDetails;
     }

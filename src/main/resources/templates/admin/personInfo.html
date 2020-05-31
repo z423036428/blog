@@ -1,10 +1,61 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.min.js"></script>
 </head>
 <body>
-
+    <div th:fragment="content" class="bg-white" style="width: 88%;height: 100%;">
+        <div class="row bg-mix">
+            <span style="font-size: 30px;margin: auto;font-weight: bold;">个&nbsp;&nbsp;人&nbsp;&nbsp;中&nbsp;&nbsp;心</span>
+        </div>
+        <br>
+        <div class="row">
+            <img id="headImg" class="rounded-circle" style="margin: auto;clear: both;display: block;width: 150px;height: 150px;" th:src="@{{headImg}(headImg=${user.headImg})}">
+        </div>
+        <div class="row">
+            <input id="uploadImg" class="btn btn-info" style="margin-left: 40%;" type="file" value="上传头像">
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-md-12">
+                <label style="font-size: 25px;font-weight: bold;margin-left: 40%;">昵称:</label><span id="nickName" style="font-size: 25px;margin-left: 30px;" th:text="${user.nickName}"></span><button style="margin-left: 10px;" class="btn-small btn-info">修改</button>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <label style="font-size: 25px;font-weight: bold;margin-left: 40%;">邮箱:</label><span id="email" style="font-size: 25px;margin-left: 30px;" th:text="${user.mail}"></span><button style="margin-left: 10px;" class="btn-small btn-info" onclick="changeMail()">修改</button>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <a href="#" onclick="$('#changePassword').show()">修改密码</a>
+                <form id="changePassword" style="display: none;" action="/admin/user/changePassword" method="post">
+                    <label>旧密码：</label><input type="password" id="oldPassword" name="oldPassword" placeholder="请输入旧密码...">
+                    <label>新密码：</label><input type="password" id="newPassword" name="newPassword" placeholder="请输入新密码...">
+                    <button type="submit">&radic;</button>
+                    <button aria-hidden="true" onclick="$('#changePassword').hide()">&times;</button>
+                </form>
+            </div>
+        </div>
+        <script th:inline="javascript">
+            /*<![CDATA[*/
+            function changeMail() {
+                var email = $('#email').text();
+                $('#email').replaceWith("<input type='email' id='email' name='email' value='"+email+"'>"+"<button onclick='confirmChangeMail()'>√</button>"+"<button aria-hidden='true' onclick='cancelChangeMail()'>X</button>");
+            }
+            function confirmChangeMail() {
+                //ajax请求修改
+            }
+            function cancelChangeMail() {
+                $('#email').next().next().remove();
+                $('#email').next().remove();
+                $('#email').replaceWith("<span id='email' style='font-size: 25px;margin-left: 30px;'>"+[[${user.mail}]]+"</span>")
+            }
+            /*]]>*/
+        </script>
+    </div>
 </body>
 </html>

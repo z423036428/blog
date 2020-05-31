@@ -8,14 +8,11 @@ import com.blog.blog.module.UserInfo;
 import com.blog.blog.service.UserService;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import javax.jws.WebParam;
 import java.util.List;
 
 
@@ -57,6 +54,15 @@ public class AdminController {
     @ResponseBody
     public ServerResponse userDel(String id){
         return userService.delUserById(id);
+    }
+
+    @RequestMapping(value = "/personInfo",method = RequestMethod.GET)
+    public String personInfo(Model model){
+        UserInfo principal = (UserInfo) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        model.addAttribute("user", principal.getUser());
+        model.addAttribute("url", "admin/personInfo");
+
+        return "/admin/index.html";
     }
 
 }

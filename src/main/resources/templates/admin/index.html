@@ -145,7 +145,7 @@
 									<a href="#" class="dropdown-toggle"
 									   data-toggle="dropdown"
 									   style="height: 60px">
-										<img alt="" class="rounded-circle" th:src="@{/img/admin/logo.png}" width="38px" height="38px"/>
+										<img alt="" class="rounded-circle" th:src="@{/img/admin/headImg/default.png}" width="38px" height="38px"/>
 										<span style="color: #FFFFFF;font-size: 15px">
                                 <i th:text="${user.nickName}">username</i>
                             </span>
@@ -154,7 +154,7 @@
 										 style="background: #FFFFFF;width: 320px;overflow: hidden">
 										<div style="margin-top: 16px;border-bottom: 1px solid #eeeeee">
 											<div style="text-align: center">
-												<img class="rounded-circle" th:src="@{/img/admin/logo.png}"
+												<img class="rounded-circle" th:src="@{/img/admin/headImg/default.png}"
 													 style="width: 38px;height: 38px;"/>
 											</div>
 											<div style="color: #323534;text-align: center;line-height: 36px;font-size: 15px">
@@ -163,28 +163,10 @@
 										</div>
 
 										<div class="row" style="margin-left: 15px;margin-right: 15px;margin-top: 10px">
-											<div class="col-md-4 text-center grid">
+											<div class="col-md-4 text-center grid" onclick="personInfo()">
 												<i class="fa fa-user" style="font-size: 25px;line-height: 45px;"></i>
 												<p style="padding: 0px;margin-top: 6px;margin-bottom: 10px;font-size: 12px">
 													个人中心</p>
-											</div>
-											<div class="col-md-4 text-center grid">
-												<i class="fa fa-gear" style="font-size: 25px;line-height: 45px;"></i>
-												<p style="padding: 0px;margin-top: 6px;margin-bottom: 10px;font-size: 12px">
-													账号管理</p>
-											</div>
-											<div class="col-md-4 text-center grid">
-												<i class="fa fa-key" style="font-size: 25px;line-height: 45px;"></i>
-												<p style="padding: 0px;margin-top: 6px;margin-bottom: 10px;font-size: 12px">
-													密码修改</p>
-											</div>
-										</div>
-
-										<div class="row" style="margin-left: 15px;margin-right: 15px;margin-top: 10px">
-											<div class="col-md-4 text-center grid">
-												<i class="fa fa-user-circle" style="font-size: 25px;line-height: 45px;"></i>
-												<p style="padding: 0px;margin-top: 6px;margin-bottom: 10px;font-size: 12px">
-													修改头像</p>
 											</div>
 											<div class="col-md-4 text-center grid">
 												<i class="fa fa-comments" style="font-size: 25px;line-height: 45px;"></i>
@@ -197,7 +179,6 @@
 													帮助中心</p>
 											</div>
 										</div>
-
 
 										<div class="row" style="margin-top: 20px">
 											<div class="text-center"
@@ -231,6 +212,11 @@
 			</div>
 			<div class="bg-white" style="width: 88%;height: 100%;" th:include="${url}::content"></div>
 		</div>
+		<script>
+			function personInfo() {
+				window.location.href = "/admin/personInfo"
+			}
+		</script>
 	</body>
 
 </html>
